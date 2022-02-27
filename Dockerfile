@@ -25,6 +25,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     xxd \
     httpie \
     uuid-runtime \
+    iproute2 \
+    default-jre \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src/
@@ -55,6 +57,10 @@ RUN git clone --depth 1 -b v0.5.3 https://github.com/intel/tinycbor
 WORKDIR /src/tinycbor/
 RUN make
 ENV TINYCBOR_ROOT=/src/tinycbor
+
+# https://github.com/secure-device-onboard/pri-fidoiot/tree/master/component-samples/demo#customize-for-multi-machine-setup
+WORKDIR /src/
+RUN git clone --depth 1 -b v1.0.2 https://github.com/secure-device-onboard/pri-fidoiot
 
 # https://github.com/secure-device-onboard/client-sdk-fidoiot/blob/master/docs/linux.md#6-compiling-fdo-client-sdk
 
