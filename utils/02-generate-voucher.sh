@@ -44,7 +44,7 @@ if [[ $# -ne 3 ]]; then
   exit 1
 fi
 
-SERIAL=${3}
+SERIAL=${4}
 if [[ -f "data/manufacturer_sn.bin" ]]; then
   SERIAL=$(cat data/manufacturer_sn.bin)
 fi
