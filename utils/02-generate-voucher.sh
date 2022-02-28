@@ -36,7 +36,7 @@ errorAndExit() {
   exit 1
 }
 
-if [[ $# -ne 3 ]]; then
+if [[ $# -lt 3 ]]; then
   error "Not enough arguments"
   error "Usage: ${0} <MANUFACTURER_URL> <API_USER> <API_PASSWORD> <SERIAL:optional>"
   error "Example: ${0} http://fdo-manufacturer.portainer.io:8039 apiUser apiPassword 53036bb6"
