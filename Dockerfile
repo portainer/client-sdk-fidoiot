@@ -29,6 +29,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     default-jre \
  && rm -rf /var/lib/apt/lists/*
 
+COPY --from=docker:dind /usr/local/bin/docker /usr/local/bin/
+
 WORKDIR /src/
 
 # https://github.com/secure-device-onboard/client-sdk-fidoiot/blob/master/docs/linux.md#2-packages-requirements-when-executing-binaries
