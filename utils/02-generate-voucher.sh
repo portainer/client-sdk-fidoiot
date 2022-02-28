@@ -37,13 +37,22 @@ errorAndExit() {
 }
 
 if [[ $# -ne 3 ]]; then
-    error "Not enough arguments"
-    error "Usage: ${0} <MANUFACTURER_URL> <API_USER> <API_PASSWORD>"
-    error "Example: ${0} http://fdo-manufacturer.portainer.io:8039 apiUser apiPassword"
-    exit 1
+  error "Not enough arguments"
+  error "Usage: ${0} <MANUFACTURER_URL> <API_USER> <API_PASSWORD> <SERIAL:optional>"
+  error "Example: ${0} http://fdo-manufacturer.portainer.io:8039 apiUser apiPassword 53036bb6"
+  error "Script will lookup for SERIAL in data/manufacturer_sn.bin and use optional SERIAL parameter if the file is not found."
+  exit 1
 fi
 
-SERIAL=$(cat data/manufacturer_sn.bin)
+SERIAL=${3}
+if [[ -f "data/manufacturer_sn.bin" ]]; then
+  SERIAL=$(cat data/manufacturer_sn.bin)
+fi
+
+if [[ -z "${SERIAL}" ]]; then
+  errorAndExit "Unable to find data/manufacturer_sn.bin on disk. Please set SERIAL parameter."
+fi
+
 info "Generating Ownership Voucher for ${SERIAL}"
 
 MANUFACTURER=${1}
