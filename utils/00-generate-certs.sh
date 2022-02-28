@@ -44,8 +44,8 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-# sed -i "s/dns_list=()/dns_list=(${1})/g" /src/pri-fidoiot/component-samples/demo/scripts/keys_gen.sh
-# sed -i "s/ip_list=(\"\${ip}\" \"127.0.0.1\")/ip_list=(\"\${ip}\" \"127.0.0.1\" ${2})/g" /src/pri-fidoiot/component-samples/demo/scripts/keys_gen.sh
+sed -i "s/dns_list=()/dns_list=(${1})/g" /src/pri-fidoiot/component-samples/demo/scripts/keys_gen.sh
+sed -i "s/ip_list=(\"\${ip}\" \"127.0.0.1\")/ip_list=(\"\${ip}\" \"127.0.0.1\" ${2})/g" /src/pri-fidoiot/component-samples/demo/scripts/keys_gen.sh
 
 cd /src/pri-fidoiot/component-samples/demo/
 ./scripts/keys_gen.sh
